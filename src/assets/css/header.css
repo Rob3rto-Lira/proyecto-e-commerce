@@ -1,0 +1,12 @@
+.header-container {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: sticky;
+}
+
+.header {
+  background-color: #282c34;
+}
