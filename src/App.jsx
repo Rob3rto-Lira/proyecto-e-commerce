@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import "./assets/css/header.css";
 import "./assets/css/footer.css";
-import Header from "./components/header.jsx";
+import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
