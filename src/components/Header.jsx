@@ -1,6 +1,6 @@
 import { Button, HStack } from "@chakra-ui/react"
 
-const header = () => {
+const Header = () => {
   return (
     <>
     <button>Marketplace cripto</button>
@@ -10,4 +10,4 @@ const header = () => {
   )
 }
 
-export default header
+export default Header
