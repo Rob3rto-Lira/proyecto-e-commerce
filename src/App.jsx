@@ -9,33 +9,40 @@ import Footer from "./components/Footer.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import NotPage from "./pages/NotPage.jsx";
 
 function App() {
   return (
     <>
 
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="login" element={<div>Login Page</div>} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='*' element={<NotPage />} />
 
 
 
-      </Route>
 
 
-      
-    </Routes> 
-    
+          </Route>
 
-   
-      
-    </BrowserRouter>
-     
-     
-     
-     
+
+
+        </Routes>
+
+
+
+
+      </BrowserRouter>
+
+
+
+
       {/* <div>
         <a href="https://vite.dev" target="_blank">
         <img src={viteLogo} className="logo" alt="Vite logo" />
