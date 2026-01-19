@@ -6,23 +6,39 @@ import "./assets/css/header.css";
 import "./assets/css/footer.css";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
+import Home from "./pages/Home.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-    <div className="body">
-      <header className="header-container">
-        <Header />
-      </header>
-      <footer className="footer-container">
-        <Footer />
-      </footer>
-      </div>
+
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="login" element={<div>Login Page</div>} />
+
+
+
+      </Route>
+
+
+      
+    </Routes> 
+    
+
+   
+      
+    </BrowserRouter>
+     
+     
+     
+     
       {/* <div>
         <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+        <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
