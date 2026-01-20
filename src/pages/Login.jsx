@@ -6,40 +6,47 @@ import { TokenContext } from '../context/TokenContext';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false); // Estado para el botón
+  const [loading, setLoading] = useState(false); 
   
-  const { token, setToken, isAuthenticated } = useContext(TokenContext); 
-  const navigate = useNavigate();
+  // Extraemos 'login' y 'setToken' del contexto
+  const { isAuthenticated, isLoading, login, setToken } = useContext(TokenContext);
+  const navigate = useNavigate(); 
+  
+  console.log("Tipo de isAuthenticated:", typeof isAuthenticated);
+console.log("Valor de isAuthenticated:", isAuthenticated);
 
   useEffect(() => {
-    if (isAuthenticated) {
+    // Si ya no está cargando el auth inicial y está autenticado, fuera de aquí
+    if (!isLoading && isAuthenticated) {
       navigate('/');
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, isLoading, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Bloquear botón
+    setLoading(true); 
 
     try {
-      // Usar una URL base o variable de entorno es mejor
       const { data } = await axios.post('http://localhost:5000/api/auth/login', {
         email,
         password
       });
 
-      // Mejora 2: Actualizar el contexto global
-      setToken(data.token); 
-      localStorage.setItem('token', data.token); 
+      // USAMOS LA FUNCIÓN DEL CONTEXTO:
+      // Esto guarda en localStorage Y actualiza el estado 'token' a la vez
+      login(data.token); 
       
+      alert('¡Bienvenido!');
       navigate('/');
     } catch (error) {
       const msg = error.response?.data?.message || 'Credenciales inválidas';
       alert(msg);
     } finally {
-      setLoading(false); // Desbloquear botón
+      setLoading(false); 
     }
   };
+
+  if (isLoading) return <div className="text-center mt-5">Verificando sesión...</div>;
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
@@ -50,7 +57,7 @@ const Login = () => {
         <div className="mb-3">
           <label htmlFor="emailInput" className="form-label">E-mail</label>
           <input 
-            type="email" // Tipo email para validación nativa
+            type="email"
             className="form-control" 
             id="emailInput"
             required
@@ -74,9 +81,9 @@ const Login = () => {
         <button 
           type="submit" 
           className="btn btn-primary w-100" 
-          disabled={loading} // Evita doble submit
+          disabled={loading}
         >
-          {loading ? 'Cargando...' : 'Entrar'}
+          {loading ? 'Iniciando...' : 'Entrar'}
         </button>
       </form>
     </div>

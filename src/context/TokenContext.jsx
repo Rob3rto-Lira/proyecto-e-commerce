@@ -34,10 +34,8 @@ const TokenProvider = ({ children }) => {
     };
 
     // Función para verificar si está autenticado
-    const isAuthenticated = () => {
-        return !!token; // Convierte a booleano (true si hay token string, false si es false o null)
-    };
-
+    const isAuthenticated = !!token;
+    
     const value = {
         token,
         setToken,
