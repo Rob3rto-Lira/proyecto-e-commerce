@@ -105,7 +105,7 @@ const Register = () => {
           <input 
             type="text"  
             className="form-control" 
-            placeholder="Ej: Satoshi123"
+            placeholder="Ej: Juan Perez"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
